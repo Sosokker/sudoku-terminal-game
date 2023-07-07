@@ -42,3 +42,14 @@ class SudokuSolver:
                     return False
 
         return True
+    
+    @staticmethod
+    def is_valid_solution(grid):
+    # Check if each row, column, and 3x3 box contains all numbers from 1 to 9
+        for i in range(9):
+            row_nums = set(grid[i])
+            col_nums = set(grid[j][i] for j in range(9))
+            box_nums = set(grid[i//3*3+j//3][i%3*3+j%3] for j in range(9))
+            if row_nums != set(range(1, 10)) or col_nums != set(range(1, 10)) or box_nums != set(range(1, 10)):
+                return False
+        return True
