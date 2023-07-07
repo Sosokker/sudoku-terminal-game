@@ -29,5 +29,3 @@ def display_grid(grid):
                 print(grid[i][j])
             else:
                 print(grid[i][j], end=" ")
-                
-print(generate_sudoku())

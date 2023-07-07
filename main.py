@@ -1,5 +1,6 @@
 from SudokuSolver import SudokuSolver
 from rich.console import Console
+from rich.prompt import Prompt
 import time
 
 def create_sudoku_table():
@@ -53,15 +54,25 @@ def check_sudoku_rule(table, row, col, value):
 
     return True
 
-sudoku_table = create_sudoku_table()
 
 console = Console()
-console.print("\n[bold yellow]Solving Sudoku...[/bold yellow]")
-start = time.process_time()
-status = SudokuSolver.solve(sudoku_table)
-in_time = time.process_time() - start
-if status == True:
-    console.print(f"\n[bold green]Finish! in {in_time} [/bold green]")
-    print_sudoku_table(sudoku_table, console, clear=False)
-elif status == False:
-    console.print("\n[bold red]Failed to solve![/bold red]")
+
+console.print("\n[bold Yellow]Let's solve Sudoku Puzzle![/bold Yellow]")
+console.print("\n[bold Blue]Select 1:[bold Yellow] Generate Mode[/bold Yellow](Generate a Sudoku puzzle for you!)[/bold Blue]")
+console.print("[bold Blue]Select 2:[bold Yellow] Solve Mode[/bold Yellow](Solve your puzzle)[/bold Blue]")
+choices = Prompt.ask("\n[bold Blue]Select: [/bold Blue]", choices=["1", "2"])
+
+if choices == "2":
+    console.clear()
+    sudoku_table = create_sudoku_table()
+    console.print("\n[bold yellow]Solving Sudoku...[/bold yellow]")
+    start = time.process_time()
+    status = SudokuSolver.solve(sudoku_table)
+    in_time = time.process_time() - start
+    if status == True:
+        console.print(f"\n[bold green]Finish! in {in_time} [/bold green]")
+        print_sudoku_table(sudoku_table, console, clear=False)
+    elif status == False:
+        console.print("\n[bold red]Failed to solve![/bold red]")
+else:
+    print('1')
