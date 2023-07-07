@@ -55,13 +55,13 @@ def check_sudoku_rule(table, row, col, value):
 
 sudoku_table = create_sudoku_table()
 
-try:
-    console = Console()
-    console.print("\n[bold yellow]Solving Sudoku...[/bold yellow]")
-    start = time.process_time()
-    solved_puzzle = SudokuSolver.solve(sudoku_table)
-    in_time = time.process_time() - start
+console = Console()
+console.print("\n[bold yellow]Solving Sudoku...[/bold yellow]")
+start = time.process_time()
+status = SudokuSolver.solve(sudoku_table)
+in_time = time.process_time() - start
+if status == True:
     console.print(f"\n[bold green]Finish! in {in_time} [/bold green]")
-    print_sudoku_table(solved_puzzle, console, clear=False)
-except Exception:
+    print_sudoku_table(sudoku_table, console, clear=False)
+elif status == False:
     console.print("\n[bold red]Failed to solve![/bold red]")
