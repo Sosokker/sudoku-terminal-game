@@ -1,3 +1,2 @@
-# sodoku-solver-
-multiple solution sodoku solver
-That's simple
+# sudoku-terminal-game
+Rework in progress
